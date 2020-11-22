@@ -5,51 +5,25 @@
         <title>Django Girls blog</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
         <div class="page-header">
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
         </div>
-            <div>
-                {% block content %}
-        {% for post in posts %}
-            <div class="post">
-                <div class="date">
-                    {{ post.published_date }}
-                </div>
-                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaksbr }}</p>
-                <img src="/media/{{ post.image }}">
-
-            </div>
-
-        {% endfor %}
-        {% endblock %}
-            </div>
-     <div class="slider middle" id="section2">
-        <div class="slides">
-            <input type="radio" name="r" id="r1" checked>
-            <input type="radio" name="r" id="r2" >
-            <input type="radio" name="r" id="r3" >
-            <input type="radio" name="r" id="r4" >
-
-
-            <div class="slide s1"><img src="static/css/1.jpg" alt=""></div>
-            <div class="slide"><img src="static/css/2.jpg" alt=""></div>
-            <div class="slide"><img src="static/css/3.jpg" alt=""></div>
-            <div class="slide"><img src="static/css/1.jpg" alt=""></div>
-
+        <div>
+            {% block content %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+                        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                        <img src="/media/{{ post.image }}">
+                    </div>
+                {% endfor %}
+            {% endblock %}
         </div>
-        <div class="navigation">
-            <label for="r1" class="bar"></label>
-            <label for="r2" class="bar"></label>
-            <label for="r3" class="bar"></label>
-
-
-        </div>
-</div>
-
     </body>
 </html>
